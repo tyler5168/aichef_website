@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>{{site_name | default:"預設名稱"}}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script type="text/javascript">
+    {
+        window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            window.location.reload()
+        }
+        });
+
+        function listStyleChange(id)
+        {
+            var ddl = document.getElementById(id);
+
+            for (var i = 0; i < ddl.length; i++) {
+                ddl.style.width = "200px";
+                ddl.style.height = "50px";
+                ddl.style.fontSize = "x-large";
+                ddl.style.backgroundColor = "#f4c1c1";
+            }
+        }
+
+        function changeSubmit()
+        {
+            var e1 = document.getElementById("vege");
+            var text1 = e1.options[e1.selectedIndex].text;
+            var e2 = document.getElementById("meat");
+            var text2 = e2.options[e2.selectedIndex].text;
+            
+            if( (text1 == '不吃菜') && (text2 == '不吃肉'))
+                alert('菜類跟肉類至少挑一項!');
+            else
+            {
+                document.ingredients.btn_submit.value = '出菜中...';
+                document.getElementById("ingredients").submit();
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+<header class="flex-container">
+    <img class="logo" src="{% static 'img/robot_chief.png' %}" alt="機器人大廚" width="8%">
+    <div class="site-title">
+        {{site_name|default:"預設名稱"}}
+    </div>
+    <p class="set-subtitle">
+        <q>讓AI開始走進你的廚房</q>
+    </p>
+</header>
+
+<main class="main">
+<div class="content">
+   <div class="content-intro">
+    還在想等一下要煮什麼嗎? 就讓AI大廚幫你設計菜色! 請下拉選單選擇食材與口味喜好後點擊出菜按鈕
+   </div>
+
+<form name="ingredients" id="ingredients" method='POST' action="/result">
+    {% csrf_token %}
+   <div>
+   <label class="label">請挑選一種蔬菜:</label>
+   <select class="options" name="vege-select" id="vege">
+        {% for vegetable in vegetable_list%}
+            <option >{{vegetable}}</option>
+        {%endfor%}
+   </select>
+        <script type="text/javascript">
+            listStyleChange("vege")
+        </script>
+   </div>
+
+   <div>
+   <label class="label">請挑選一種肉類:</label>
+   <select class="options" name="meat-select" id="meat">
+        {% for meat in meat_list%}
+            <option>{{meat}}</option>
+        {%endfor%}
+   </select>
+        <script type="text/javascript">
+            listStyleChange("meat")
+        </script>  
+   </div>
+
+   <div>
+   <label class="label">請挑選口味偏好:</label>
+   <select class="options" name="favor-select" id="favor">
+        {% for favor in favor_list%}
+            <option>{{favor}}</option>
+        {%endfor%}
+   </select>
+        <script type="text/javascript">
+            listStyleChange("favor")
+        </script>  
+   </div>
+   <p><input class="btn-submit" name="btn_submit" value='上菜!' type='button' onclick="changeSubmit();"></p>
+</form>
+
+</div>
+
+</main>
+
+</body>
+</html>
