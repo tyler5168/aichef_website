@@ -3,10 +3,13 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{site_name | default:"預設名稱"}}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <script type="text/javascript">
     {
+        console.log(screen.width);
+
         window.addEventListener('pageshow', function(event) {
         if (event.persisted) {
             window.location.reload()
@@ -45,11 +48,11 @@
 </head>
 <body>
 <header class="flex-container">
-    <img class="logo" src="{% static 'img/robot_chief.png' %}" alt="機器人大廚" width="8%">
+    <img class="logo" src="{% static 'img/ai_chef.png' %}" alt="機器人大廚">
     <div class="site-title">
         {{site_name|default:"預設名稱"}}
     </div>
-    <p class="set-subtitle">
+    <p class="set-subtitle" id="ptest">
         <q>讓AI開始走進你的廚房</q>
     </p>
 </header>
@@ -63,36 +66,42 @@
 <form name="ingredients" id="ingredients" method='POST' action="/result">
     {% csrf_token %}
    <div>
-   <label class="label">請挑選一種蔬菜:</label>
-   <select class="options" name="vege-select" id="vege">
-        {% for vegetable in vegetable_list%}
-            <option >{{vegetable}}</option>
-        {%endfor%}
-   </select>
+        <label class="label">請挑選一種蔬菜:</label>
+   </div>
+   <div>
+        <select class="options" name="vege-select" id="vege">
+            {% for vegetable in vegetable_list%}
+                <option >{{vegetable}}</option>
+            {%endfor%}
+        </select>
         <script type="text/javascript">
             listStyleChange("vege")
         </script>
    </div>
 
    <div>
-   <label class="label">請挑選一種肉類:</label>
-   <select class="options" name="meat-select" id="meat">
-        {% for meat in meat_list%}
-            <option>{{meat}}</option>
-        {%endfor%}
-   </select>
+        <label class="label">請挑選一種肉類:</label>
+    </div>  
+   <div>
+        <select class="options" name="meat-select" id="meat">
+            {% for meat in meat_list%}
+                <option>{{meat}}</option>
+            {%endfor%}
+        </select>
         <script type="text/javascript">
             listStyleChange("meat")
-        </script>  
+        </script>     
    </div>
 
    <div>
-   <label class="label">請挑選口味偏好:</label>
-   <select class="options" name="favor-select" id="favor">
-        {% for favor in favor_list%}
-            <option>{{favor}}</option>
-        {%endfor%}
-   </select>
+        <label class="label">請挑選口味偏好:</label>
+   </div>
+   <div>
+        <select class="options" name="favor-select" id="favor">
+            {% for favor in favor_list%}
+                <option>{{favor}}</option>
+            {%endfor%}
+        </select>
         <script type="text/javascript">
             listStyleChange("favor")
         </script>  

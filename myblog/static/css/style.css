@@ -1,47 +1,22 @@
 body {
 	background-color:#f1e3d1;
-	/* margin-left: 10%; */
-	/* margin-right: 10%; */
-	/* padding: 10px 10px 10px 10px; */
 	font-family: sans-serif;
 }
 
-.select {
-  width: 200%;
-  /* make it min-height*/
-  min-height: 50px;
-  border-radius: 25px;
-  border-color: #555;
-  padding: 10px;
-}
-
-.label {
-    padding-top: 50px;
-    padding-right: 1%;
-    padding-left: 30%;
-    font-size: 150%;
-}
-
+@media (min-width: 1200px) {
 .flex-container {
     display: flex;
     justify-content: flex-start;
     color: white;
 	/* border: 2px solid black; */
     background-color:#09713e;
-    width: 60%;
+    width: 70%;
     margin: auto;
-}
-
-.logo {
-   margin-top: 3%;  
-   margin-left: 5%;
-   margin-bottom: 3%; 
-}
-
-.site-title {
+ }
+ .site-title {
     margin-top: 5%;  
     margin-left: 5%;
-    font-size: 350%;
+    font-size: 300%;
 }
 
 .set-subtitle {
@@ -50,10 +25,41 @@ body {
     margin-top: 7%; 
 }
 
-.main {
-    background-color:white;
-    width: 60%;
+.logo {
+   margin-top: 3%;  
+   margin-left: 5%;
+   margin-bottom: 3%; 
+   width: 8%;
+}
+}
+
+@media (max-width: 768px) {
+.flex-container {
+    display: flex;
+    justify-content: flex-start;
+    color: white;
+	/* border: 2px solid black; */
+    background-color:#09713e;
+    width: 90%;
     margin: auto;
+ }
+ .site-title {
+    margin-top: 5%;  
+    margin-left: 5%;
+    font-size: 120%;
+ }
+ .set-subtitle {
+    visibility: hidden;
+    font-size: 0%;
+    margin-left: 1%;
+    margin-top: 7%; 
+}
+.logo {
+   margin-top: 3%;  
+   margin-left: 5%;
+   margin-bottom: 3%; 
+   width: 15%;
+}
 }
 
 .content {
@@ -67,8 +73,22 @@ body {
     padding-right: 5%;
 }
 
+@media (min-width: 1200px) {
+.main {
+    background-color:white;
+    width: 70%;
+    margin: auto;
+}
+.label {
+    padding-top: 50px;
+    padding-right: 1%;
+    padding-left: 40%;
+    font-size: 150%;
+}
+
 .options {
     padding-left: 3%;
+    margin-left: 40%;
 }
 
 .btn-submit {
@@ -81,6 +101,37 @@ body {
     margin-top: 5%;
     margin-left: 40%;
     font-size: 150%;
+}
+}
+
+@media (max-width: 768px) {
+.main {
+    background-color:white;
+    width: 90%;
+    margin: auto;
+}
+.label {
+    padding-top: 50px;
+    padding-right: 1%;
+    padding-left: 20%;
+    font-size: 150%;
+}
+.options {
+    padding-left: 3%;
+    margin-left: 20%;
+}
+
+.btn-submit {
+    border:0;
+    background-color:steelblue;
+    color:#fff;
+    border-radius:10px;
+    width: 200px;
+    height: 60px;
+    margin-top: 5%;
+    margin-left: 20%;
+    font-size: 150%;
+}
 }
 
 .dish-name {
