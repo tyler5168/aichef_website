@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{site_name | default:"預設名稱"}}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <script type="text/javascript">
-    {
+{% extends 'base.html' %}
+
+        {% block javascript %}
+
         console.log(screen.width);
 
         window.addEventListener('pageshow', function(event) {
@@ -43,23 +37,11 @@
                 document.getElementById("ingredients").submit();
             }
         }
-    }
-    </script>
-</head>
-<body>
-<header class="flex-container">
-    <img class="logo" src="{% static 'img/ai_chef.png' %}" alt="機器人大廚">
-    <div class="site-title">
-        {{site_name|default:"預設名稱"}}
-    </div>
-    <p class="set-subtitle" id="ptest">
-        <q>讓AI開始走進你的廚房</q>
-    </p>
+        {% endblock %}
 
-</header>
 
-<main class="main">
-<div class="content">
+{% block content %}
+
    <div class="content-intro">
     還在想等一下要煮什麼嗎? 就讓AI大廚幫你設計菜色! 請下拉選單選擇食材與口味喜好後點擊上菜按鈕
    </div>
@@ -110,12 +92,12 @@
    <p><input class="btn-submit" name="btn_submit" value='上菜!' type='button' onclick="changeSubmit();"></p>
 </form>
 
-</div>
+{% endblock %}
+
+{% block footer %}
+    {% load static %}
     <div class="bookmark">
         <img class="star" src="{% static 'img/star.png' %}" alt="我的最愛">
         <a class="bookmark-url" href="">檢視我的收藏</a>
     </div>
-</main>
-
-</body>
-</html>
+{% endblock %}

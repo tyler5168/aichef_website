@@ -1,32 +1,9 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{site_name | default:"預設名稱"}}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-</head>
-<body>
-<header class="flex-container">
-    <img class="logo" src="{% static 'img/ai_chef.png' %}" alt="機器人大廚">
-    <div class="site-title">
-        {{site_name|default:"預設名稱"}}
-    </div>
-    <p class="set-subtitle">
-        <q>讓AI開始走進你的廚房</q>
-    </p>
-</header>
+{% extends 'base.html' %}
 
-<main class="main">
-    <div class="content">
-        <div class="content-intro">
-            <div class="dish-name">{{dish_name}}</div>
-            <pre style="white-space: pre-wrap;" >{{dish_content}}</pre>
-            <div>如果喜歡這道菜，請按此加入最愛(開發中)</div>
-        </div>
-    </div>
-</main>
-
-</body>
-</html>
+{% block content %}
+<div class="content-intro">
+    <div class="dish-name">{{dish_name}}</div>
+    <pre style="white-space: pre-wrap;" >{{dish_content}}</pre>
+    <div>如果喜歡這道菜，請按此加入最愛(開發中)</div>
+</div>
+{% endblock %}

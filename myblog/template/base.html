@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-TW">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{site_name | default:"預設名稱"}}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <script type="text/javascript">
+    {
+        {% block javascript %}
+        {% endblock %}
+    }
+    </script>
+
+</head>
+<body>
+<header class="flex-container">
+    <img class="logo" src="{% static 'img/ai_chef.png' %}" alt="機器人大廚">
+    <div class="site-title">
+        {{site_name|default:"預設名稱"}}
+    </div>
+    <p class="set-subtitle" id="ptest">
+        <q>讓AI開始走進你的廚房</q>
+    </p>
+</header>
+
+<main class="main">
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+    {% block footer %}
+    {% endblock %}
+</main>
+
+</body>
+</html>
