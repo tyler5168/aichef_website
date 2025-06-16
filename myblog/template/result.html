@@ -1,9 +1,20 @@
 {% extends 'base.html' %}
 
+{% block javascript %}
+
+function ConfirmCookie()
+{
+    if(confirm('此服務需要同意本站存取Cookie，同意請按確定，不同意請按取消'))
+        return true;
+    return false;
+}
+
+{% endblock %}
+
 {% block content %}
 <div class="content-intro">
     <div class="dish-name">{{dish_name}}</div>
     <pre style="white-space: pre-wrap;" >{{dish_content}}</pre>
-    <div>如果喜歡這道菜，請按此加入最愛(開發中)</div>
+    <div>如果喜歡這道菜，請<a href="" onclick="return ConfirmCookie()">按此</a>加入收藏(開發中)</div>
 </div>
 {% endblock %}
