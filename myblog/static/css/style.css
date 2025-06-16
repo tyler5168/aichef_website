@@ -31,6 +31,22 @@ body {
    margin-bottom: 3%; 
    width: 8%;
 }
+
+.bookmark {
+    margin-left: 38%;
+    width: 15%;
+}
+
+.star {
+    width: 12%;
+    padding-top: 10%;
+    padding-left: 15%;
+}
+
+.bookmark-url{
+    font-size: 150%;
+}
+
 }
 
 @media (max-width: 768px) {
@@ -60,10 +76,26 @@ body {
    margin-bottom: 3%; 
    width: 15%;
 }
+
+.bookmark {
+    margin-left: 18%;
+    width: 55%;
+}
+
+.star {
+    width: 10%;
+    padding-top: 10%;
+    padding-left: 15%;
+}
+
+.bookmark-url{
+    font-size: 150%;
+}
+
 }
 
 .content {
-    padding: 100px 10px 10px 10px;  
+    padding: 10px 10px 10px 10px;  
 }
 
 .content-intro {
