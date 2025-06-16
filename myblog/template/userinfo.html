@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用戶資訊</title>
+</head>
+<body>
+
+<h1>用戶管理</h1>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+      <th>編號</th>
+      <th>帳號</th>
+      <th>密碼</th>
+      <th>姓名</th>
+      <th>性別</th>
+      <th>年齡</th>
+      <th>管理</th>
+  </tr>
+
+    {% for user in users %}
+    <tr>
+        <td>{{user.userID}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.truename}}</td>
+        <td>{{user.sex}}</td>
+        <td>{{user.age}}</td>
+        <td><a href = "/user_info/edit/?userid={{user.userID}}">編輯 </a><a href="/user_info/edit/delete/{{user.userID}}" > 刪除</a> </td>
+    </tr>
+    {%endfor%}
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用戶編輯</title>
+</head>
+<body>
+
+<h1>用戶編輯</h1>
+
+<form name="user" action="update/" method="post">
+    {% csrf_token %}
+    <input type="text" name="userID" id="userID-hid" value="{{user.0}}" hidden="hidden">
+    用戶編號:<input type="text" id="userID" value="{{user.0}}" disabled><br>
+    用戶帳號:<input type="text" name="username" id="username" value="{{user.1}}"><br>
+    用戶密碼:<input type="text" name="password" id="password" value="{{user.2}}"><br>
+    用戶姓名:<input type="text" name="truename" id="truename" value="{{user.3}}"><br>
+    性別:
+    {% if user.4 == 'male' %}
+        男 <input type="radio" name="sex" value="male" checked>
+        女 <input type="radio" name="sex" value="female">
+    {% else %}
+        男 <input type="radio" name="sex" value="male">
+        女 <input type="radio" name="sex" value="female" checked>
+    {% endif %}
+    <br>
+
+    年齡:<input type="text" name="age" id="age" value="{{user.5}}">
+    <br>
+    <input type="submit" name="submit" id="submit">
+</form>
+
+
+</body>
+</html>
