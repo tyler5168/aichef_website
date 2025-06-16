@@ -1,6 +1,7 @@
 # Create your views here.
 from django.shortcuts import render, HttpResponse
 from openai import OpenAI
+from . import api_auth
 
 def http_test(request) -> 'http response':
     value = request.GET['sga']
@@ -32,7 +33,7 @@ def result(request) -> 'html':
 
 def get_ai_response(ingredients) -> str:
     client = OpenAI(
-        api_key=""
+        api_key = api_auth.get_api_auth()
     )
 
     keyword = "加上"
