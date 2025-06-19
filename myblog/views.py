@@ -128,16 +128,18 @@ def add_bookmark(request):
 def show_bookmark(request):
 
     try:
-        current_session = Session.objects.get(session_key=request.session.session_key)
+        Session.objects.get(session_key=request.session.session_key)
     except Exception as err:
         print(str(err))
+        print("No keys found in cookie!")
+        return render(request, 'bookmark.html', {"site_name": site_name, 'dishes': None, 'dishes_num': 0})
 
-    # for s_ in s:
-    #     print(s_.content)
-
-    dishes = UserBookmark.objects.all()
+    # dishes = UserBookmark.objects.all()
+    dishes = UserBookmark.objects.filter(session_id=request.session.session_key)
+    # dishes = UserBookmark.objects.filter(session_id='d84mj0s3yinjqsbs1gqj0yl8cuzznwuq')
     dishes_num = dishes.count()
 
+    print(dishes_num)
     return render(request,'bookmark.html', { "site_name":site_name,'dishes' : dishes,'dishes_num':dishes_num })
 
 
