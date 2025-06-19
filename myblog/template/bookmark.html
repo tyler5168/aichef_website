@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block javascript %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="content-intro">
+
+    {% if dishes_num != 0 %}
+
+    {% for dish in dishes %}
+    <div class="dish-name">{{dish.title}}</div>
+    <pre style="white-space: pre-wrap;" >{{dish.content}}</pre>
+    <div>{{dish.html_table|safe}}</div>
+    <p><input class="btn-delete-bookmark" name="btn-delete-bookmark" value="將這道菜從收藏移除" type='button' onclick="location.href='/delete_bookmark/{{dish.id}}';"></p>
+    <hr>
+    {% endfor %}
+
+    {% else %}
+        <h1 class="no-dishes">您還沒收藏任何食譜... </h1>
+        <div>
+            {% load static %}
+            <img class="table" src="{% static 'img/empty_dish.png' %}" alt="空盤子" >
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<header class="flex-container">
+<header class="flex-header">
     <div class="logo-wrap">
     <a href="/"><img class="logo" src="{% static 'img/ai_chef.png' %}" title="我最AI的私房料理首頁" alt="機器人大廚"></a>
     </div>
@@ -32,9 +32,14 @@
     {% block content %}
     {% endblock %}
 </div>
-    {% block footer %}
+    {% block bookmark %}
     {% endblock %}
 </main>
+
+<footer class="footer">
+    <div><strong>Powered by</strong></div>
+    <img class="openai-logo" src="{% static 'img/OpenAI_Logo.svg' %}" title="OpenAI">
+</footer>
 
 </body>
 </html>
