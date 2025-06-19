@@ -1,6 +1,6 @@
 body {
 	background-color:#f1e3d1;
-	font-family: sans-serif;
+	font-family: "微軟正黑體", sans-serif;
 }
 
 @media (min-width: 1200px) {
@@ -26,14 +26,18 @@ body {
 }
 
 .logo {
-   margin-top: 3%;  
-   margin-left: 5%;
+   margin-top: 10%;  
+   margin-left: 25%;
    margin-bottom: 3%; 
-   width: 8%;
+   width: 60%;
+}
+
+.logo-wrap {
+    width: 15%;
 }
 
 .bookmark {
-    margin-left: 38%;
+    margin-left: 40%;
     width: 15%;
 }
 
@@ -71,10 +75,14 @@ body {
     margin-top: 7%; 
 }
 .logo {
-   margin-top: 3%;  
+   margin-top: 5%;  
    margin-left: 5%;
    margin-bottom: 3%; 
-   width: 15%;
+   width: 70%;
+}
+
+.logo-wrap {
+    width: 25%;
 }
 
 .bookmark {
@@ -105,6 +113,20 @@ body {
     padding-right: 5%;
 }
 
+.no-dishes {
+    font-size: 130%;
+    color: blue;
+    text-align: center;
+    padding-top: 5%;
+}
+
+.table {
+    width: 50%;
+    margin-top: 5%;
+    margin-left: 25%;
+    border: 3px solid gray;
+}
+
 @media (min-width: 1200px) {
 .main {
     background-color:white;
@@ -119,7 +141,7 @@ body {
 }
 
 .options {
-    padding-left: 3%;
+    padding-left: 6%;
     margin-left: 40%;
 }
 
@@ -131,9 +153,22 @@ body {
     width: 200px;
     height: 60px;
     margin-top: 5%;
-    margin-left: 40%;
+    margin-left: 42%;
     font-size: 150%;
 }
+
+.btn-delete-bookmark {
+    border:0;
+    background-color:steelblue;
+    color:#fff;
+    border-radius:10px;
+    width: 250px;
+    height: 60px;
+    margin-top: 5%;
+    margin-left: 42%;
+    font-size: 100%;
+}
+
 }
 
 @media (max-width: 768px) {
@@ -164,6 +199,19 @@ body {
     margin-left: 20%;
     font-size: 150%;
 }
+
+.btn-delete-bookmark {
+    border:0;
+    background-color:steelblue;
+    color:#fff;
+    border-radius:10px;
+    width: 250px;
+    height: 60px;
+    margin-top: 5%;
+    margin-left: 12%;
+    font-size: 100%;
+}
+
 }
 
 .dish-name {

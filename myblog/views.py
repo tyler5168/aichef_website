@@ -1,7 +1,29 @@
 # Create your views here.
-from django.shortcuts import render, HttpResponse
+from tkinter.font import names
+
+from Demos.win32ts_logoff_disconnected import session
+from django.contrib.sessions.models import Session
+from django.shortcuts import render, HttpResponse, redirect
 from openai import OpenAI
+from myblog.models import UserBookmark
 from . import api_auth
+import html
+
+class Dish:
+    def __init__(self) -> None:
+        self.name = ""
+        self.content = ""
+        self.html_table = ""
+
+    def set_dish(self, name, content, html_table) -> None:
+        self.name = name
+        self.content = content
+        self.html_table = html_table
+
+    def get_dish(self):
+        return {'name': self.name, 'content' : self.content, 'html_table' : self.html_table}
+
+current_dish = Dish()
 
 def http_test(request) -> 'http response':
     value = request.GET['sga']
@@ -17,19 +39,6 @@ def index(request) -> 'html':
 
     return render(request, 'index.html',{"site_name":site_name, "vegetable_list":vegetable_list
                                          ,"meat_list":meat_list, "favor_list":favor_list})
-
-def result(request) -> 'html':
-    vegetable = request.POST['vege-select']
-    meat = request.POST['meat-select']
-    favor = request.POST['favor-select']
-    ingredients_list = [vegetable, meat, favor]
-
-    ai_output = get_ai_response(ingredients_list)
-    # print(ai_output)
-    dish = ai_output.split("\n", 1)
-    return render(request,'result.html',{"site_name":site_name, "dish_name":dish[0],
-                                         "dish_content":dish[1]})
-
 
 def get_ai_response(ingredients) -> str:
     client = OpenAI(
@@ -47,7 +56,7 @@ def get_ai_response(ingredients) -> str:
         keyword = ',素食'
 
     ai_input = "提供一道用" + ingredients[0] + keyword + ingredients[1] + "烹飪的料理，味道要" \
-            + ingredients[2] +"料理名稱放在全文最前面"
+            + ingredients[2] +"料理名稱放在全文最前面" + "全文最後附上營養成分整理成html的表格語法，整段語法前後附上'@tbl'這個字串"
 
     print(ai_input)
 
@@ -62,3 +71,77 @@ def get_ai_response(ingredients) -> str:
         return response.output_text
 
     return 'demo菜色\ndemo作法'
+
+def get_sessionid(request):
+    session_id = request.COOKIES.get('sessionid')
+
+    if session_id:
+        return True
+    return False
+
+def result(request) -> 'html':
+    vegetable = request.POST['vege-select']
+    meat = request.POST['meat-select']
+    favor = request.POST['favor-select']
+    ingredients_list = [vegetable, meat, favor]
+
+    ai_output = get_ai_response(ingredients_list)
+    # print(ai_output)
+    dish = ai_output.split("\n", 1)
+    dish_name = dish[0]
+    table_start_index = dish[1].find('@')
+    html_table = dish[1][table_start_index+4:-4]
+    dish_content = dish[1][:table_start_index]
+    current_dish.set_dish(dish_name, dish_content, html_table)
+
+    # print(dish_content_substring)
+
+    has_cookie = 'false'
+
+    if get_sessionid(request):
+        has_cookie = 'true'
+
+    return render(request,'result.html',{ "site_name":site_name, "dish_name":dish_name,
+                                         "dish_content":dish_content, "html_table":html_table, "has_cookie":has_cookie })
+
+def add_bookmark(request):
+    print("register here")
+    if not request.session.has_key('logged_in'):
+        request.session['logged_in'] = True
+        request.session.save()
+    else:
+        logged_in = request.session['logged_in']
+        print("session", logged_in)
+
+    # print(request.session.session_key)
+    # print(current_dish.get_dish()['name'])
+    # print(current_dish.get_dish()['content'])
+
+    current_session = Session.objects.get(session_key = request.session.session_key)
+    current_bookmark = UserBookmark(title = current_dish.get_dish()['name'], content = current_dish.get_dish()['content'],
+                                    html_table = current_dish.get_dish()['html_table'], session = current_session)
+
+    current_bookmark.save()
+    #return HttpResponse("已加入收藏!")
+    return redirect('/bookmark/')
+
+def show_bookmark(request):
+
+    try:
+        current_session = Session.objects.get(session_key=request.session.session_key)
+    except Exception as err:
+        print(str(err))
+
+    # for s_ in s:
+    #     print(s_.content)
+
+    dishes = UserBookmark.objects.all()
+    dishes_num = dishes.count()
+
+    return render(request,'bookmark.html', { "site_name":site_name,'dishes' : dishes,'dishes_num':dishes_num })
+
+
+def delete_bookmark(request, dish_id):
+    dish = UserBookmark.objects.get( id=dish_id )
+    dish.delete()
+    return redirect('/bookmark')

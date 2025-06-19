@@ -16,7 +16,9 @@
 </head>
 <body>
 <header class="flex-container">
-    <img class="logo" src="{% static 'img/ai_chef.png' %}" alt="機器人大廚">
+    <div class="logo-wrap">
+    <a href="/"><img class="logo" src="{% static 'img/ai_chef.png' %}" title="我最AI的私房料理首頁" alt="機器人大廚"></a>
+    </div>
     <div class="site-title">
         {{site_name|default:"預設名稱"}}
     </div>

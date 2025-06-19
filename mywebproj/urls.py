@@ -23,4 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',myblog.views.index),
     path('result/',myblog.views.result),
+    path('add_bookmark/',myblog.views.add_bookmark),
+    path('bookmark/',myblog.views.show_bookmark),
+    path('delete_bookmark/<int:dish_id>', myblog.views.delete_bookmark),
 ]
