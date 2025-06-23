@@ -1,27 +1,35 @@
 {% extends 'base.html' %}
 
-{% block javascript %}
+{% block script%}
+<script>
+
+window.onload = styleInit;
+
+function styleInit(){
+    let btn = document.querySelector(".btn-delete-bookmark");
+    btn.onmouseover = () => btn.className = "btn-delete-bookmark-over";
+    btn.onmouseout = () => btn.className = "btn-delete-bookmark";
+}
 
 function ConfirmCookie(has_cookie)
 {
-    //console.log("ConfirmCookie in")
-    //console.log(typeof(has_cookie))
 
     if(has_cookie)
-        return true;
+        return location.href='/add_bookmark';
 
     if(confirm('此服務需要同意本站存取Cookie，同意請按確定，不同意請按取消'))
-        return true;
-    return false;
+        return location.href='/add_bookmark';
+        
 }
-
+</script>
 {% endblock %}
 
 {% block content %}
 <div class="content-intro">
-    <div class="dish-name">{{dish_name}}</div>
+    <div class="dish-name"><strong>{{dish_name}}</strong></div>
     <pre style="white-space: pre-wrap;" >{{dish_content}}</pre>
     <div>{{html_table|safe}}</div>
-     <div>如果喜歡這道菜，請<a href="/add_bookmark/" onclick="return ConfirmCookie({{has_cookie}});">按此</a>加入收藏</div>
+    <!-- <div>如果喜歡這道菜，請<a href="/add_bookmark/" onclick="return ConfirmCookie({{has_cookie}});">按此</a>加入收藏</div> -->
+    <p><input class="btn-delete-bookmark"  name="btn-delete-bookmark" value="將這道菜加入收藏" type='button' onclick="return ConfirmCookie({{has_cookie}});"></p>
 </div>
 {% endblock %}

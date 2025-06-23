@@ -22,6 +22,7 @@ import myblog.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',myblog.views.index),
+    path('trans/',myblog.views.result_transaction),
     path('result/',myblog.views.result),
     path('add_bookmark/',myblog.views.add_bookmark),
     path('bookmark/',myblog.views.show_bookmark),

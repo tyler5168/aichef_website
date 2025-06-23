@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 
-{% block javascript %}
+{% block script %}
+
+<script>
+
+window.onload = styleInit;
+
+function styleInit(){
+    console.log("bookmark init~")
+    let btn = document.querySelectorAll(".btn-delete-bookmark");
+    console.log(btn.length);
+
+    for (let i=0; i<btn.length; i++) 
+    {
+        btn[i].onmouseover = () => btn[i].className =  "btn-delete-bookmark-over";
+        btn[i].onmouseout = () => btn[i].className =  "btn-delete-bookmark";
+    }
+}
+
+</script>
 
 {% endblock %}
 
@@ -13,9 +31,8 @@
     {% for dish in dishes %}
     <div class="dish-name">{{dish.title}}</div>
     <pre style="white-space: pre-wrap;" >{{dish.content}}</pre>
-    <div>{{dish.html_table|safe}}</div>
+    <div class="dish-table">{{dish.html_table|safe}}</div>
     <p><input class="btn-delete-bookmark" name="btn-delete-bookmark" value="將這道菜從收藏移除" type='button' onclick="location.href='/delete_bookmark/{{dish.id}}';"></p>
-    <hr>
     {% endfor %}
 
     {% else %}

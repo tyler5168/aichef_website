@@ -1,9 +1,52 @@
 body {
-	background-color:#f1e3d1;
+	background-color: #36454F;
 	font-family: "微軟正黑體", sans-serif;
 }
 
+.content {
+    margin: auto;
+    width: 80%;
+    padding-top: 5%;
+}
+
+.content-intro {
+    font-size: 150%;
+    padding-bottom: 5%;
+    display: flex; 
+    justify-content: center;
+    flex-direction: column;
+}
+
+.no-dishes {
+    font-size: 130%;
+    color: blue;
+    text-align: center;
+    padding-top: 5%;
+}
+
+.table {
+    width: 50%;
+    margin-top: 5%;
+    margin-left: 25%;
+    border: 3px solid gray;
+}
+
+.dish-name {
+    color: white;
+    background-color: #343434;
+    text-align: center;
+}
+
+.dish-table {
+    margin: auto;
+}
+
+
+
+/*Section of PC size*/
+
 @media (min-width: 1200px) {
+
 .flex-header {
     display: flex;
     justify-content: flex-start;
@@ -37,104 +80,43 @@ body {
     width: 15%;
 }
 
-.bookmark {
-    margin-left: 40%;
-    width: 15%;
+.side-menu{
+    margin-left: 0;
+    width: 200px;
+    background-color: #f1e3d1;
 }
 
-.star {
-    width: 12%;
-    padding-top: 10%;
-    padding-left: 15%;
-}
-
-.bookmark-url{
+.menu {
+    width: 200px;
+    color: #000;
     font-size: 150%;
+    a { 
+        text-decoration: none; 
+    }
+    a:visited { color: black; }
+    
+    margin-left: 0;
+    padding-left: 0;
+    
+    li{
+        border-bottom: solid 1px #023020;
+        width: 200px;
+        list-style-type: none;
+        text-align: center;
+        margin-left: 0;
+        padding-left: 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
 }
 
-}
-
-@media (max-width: 768px) {
-.flex-header  {
-    display: flex;
-    justify-content: flex-start;
-    color: white;
-	/* border: 2px solid black; */
-    background-color:#09713e;
-    width: 90%;
-    margin: auto;
-    border-radius: 15px 15px 0px 0px;
- }
- .site-title {
-    margin-top: 5%;  
-    margin-left: 5%;
-    font-size: 120%;
- }
- .set-subtitle {
-    visibility: hidden;
-    font-size: 0%;
-    margin-left: 1%;
-    margin-top: 7%; 
-}
-.logo {
-   margin-top: 5%;  
-   margin-left: 5%;
-   margin-bottom: 3%; 
-   width: 70%;
-}
-
-.logo-wrap {
-    width: 25%;
-}
-
-.bookmark {
-    margin-left: 18%;
-    width: 55%;
-}
-
-.star {
-    width: 10%;
-    padding-top: 10%;
-    padding-left: 15%;
-}
-
-.bookmark-url{
-    font-size: 150%;
-}
-
-}
-
-.content {
-    padding: 10px 10px 10px 10px;  
-}
-
-.content-intro {
-    font-size: 150%;
-    padding-bottom: 40px;
-    padding-left: 5%;
-    padding-right: 5%;
-}
-
-.no-dishes {
-    font-size: 130%;
-    color: blue;
-    text-align: center;
-    padding-top: 5%;
-}
-
-.table {
-    width: 50%;
-    margin-top: 5%;
-    margin-left: 25%;
-    border: 3px solid gray;
-}
-
-@media (min-width: 1200px) {
 .main {
     background-color:white;
     width: 70%;
     margin: auto;
+    display: flex;
 }
+
 .label {
     padding-top: 50px;
     padding-right: 1%;
@@ -159,6 +141,18 @@ body {
     font-size: 150%;
 }
 
+.btn-submit-over {
+    border:0;
+    background-color:blue;
+    color:#fff;
+    border-radius:10px;
+    width: 200px;
+    height: 60px;
+    margin-top: 5%;
+    margin-left: 42%;
+    font-size: 150%;
+}
+
 .btn-delete-bookmark {
     border:0;
     background-color:steelblue;
@@ -166,14 +160,28 @@ body {
     border-radius:10px;
     width: 250px;
     height: 60px;
-    margin-top: 5%;
-    margin-left: 42%;
+    margin-top: 2%;
+    margin-left: 38%;
+    margin-bottom: 5%;
+    font-size: 100%;
+}
+
+.btn-delete-bookmark-over {
+    border:0;
+    background-color:blue;
+    color:#fff;
+    border-radius:10px;
+    width: 250px;
+    height: 60px;
+    margin-top: 2%;
+    margin-left: 38%;
+    margin-bottom: 5%;
     font-size: 100%;
 }
 
 .footer {
     background-color: aliceblue;
-    color:firebrick;
+    color:black;
     width: 70%;
     margin: auto;
     text-align: center;
@@ -186,12 +194,99 @@ body {
 
 }
 
+/*endof PC size*/
+
+
+/*Section of mobile size*/
 @media (max-width: 768px) {
+.flex-header  {
+    display: flex;
+    justify-content: flex-start;
+    color: white;
+	/* border: 2px solid black; */
+    background-color:#09713e;
+    width: 90%;
+    margin: auto;
+    border-radius: 15px 15px 0px 0px;
+ }
+ .site-title {
+    margin-top: 5%;  
+    margin-left: 2%;
+    font-size: 150%;
+ }
+ .set-subtitle {
+    visibility: hidden;
+    font-size: 0%;
+    margin-left: 1%;
+    margin-top: 7%; 
+}
+.logo {
+   margin-top: 5%;  
+   margin-left: 5%;
+   margin-bottom: 3%; 
+   width: 70%;
+}
+
+.logo-wrap {
+    width: 25%;
+}
+
+.side-menu{
+    margin-left: 0;
+    width: 100%;
+    background-color: #f1e3d1;
+    border: solid 1px #023020;
+}
+
+.menu {
+    width: 100%;
+    color: #000;
+    font-size: 150%;
+    a { 
+        text-decoration: none; 
+    }
+    a:visited { color: black; }
+    
+    margin-left: 0;
+    padding-left: 0;
+    display: flex;
+    flex-direction: row;
+    li{
+        /* border-bottom: solid 1px #023020; */
+        /* border: solid 1px #023020; */
+        width: 200px;
+        list-style-type: none;
+        text-align: center;
+        margin-left: 0;
+        padding-left: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+
 .main {
     background-color:white;
     width: 90%;
     margin: auto;
+    display: flex;
+    flex-direction:column;
 }
+
+.bookmark {
+    margin-left: 18%;
+    width: 55%;
+}
+
+.star {
+    width: 10%;
+    padding-top: 10%;
+    padding-left: 15%;
+}
+
+.bookmark-url{
+    font-size: 150%;
+}
+
 .label {
     padding-top: 50px;
     padding-right: 1%;
@@ -200,12 +295,24 @@ body {
 }
 .options {
     padding-left: 3%;
-    margin-left: 20%;
+    margin-left: 10%;
 }
 
 .btn-submit {
     border:0;
     background-color:steelblue;
+    color:#fff;
+    border-radius:10px;
+    width: 200px;
+    height: 60px;
+    margin-top: 5%;
+    margin-left: 20%;
+    font-size: 150%;
+}
+
+.btn-submit-over {
+    border:0;
+    background-color:blue;
     color:#fff;
     border-radius:10px;
     width: 200px;
@@ -223,25 +330,36 @@ body {
     width: 250px;
     height: 60px;
     margin-top: 5%;
-    margin-left: 12%;
+    margin-left: 8%;
+    font-size: 100%;
+}
+
+.btn-delete-bookmark-over {
+    border:0;
+    background-color:blue;
+    color:#fff;
+    border-radius:10px;
+    width: 250px;
+    height: 60px;
+    margin-top: 5%;
+    margin-left: 8%;
     font-size: 100%;
 }
 
 .footer {
     background-color: aliceblue;
-    color:firebrick;
+    color:black;
     width: 90%;
     margin: auto;
     text-align: center;
     border-radius: 0px 0px 15px 15px;
 }
-
 .openai-logo {
     width: 30%;
 }
 
 }
 
-.dish-name {
-    color:blue;
-}
+/*End of mobile size*/
+
+

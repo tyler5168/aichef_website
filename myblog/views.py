@@ -40,6 +40,25 @@ def index(request) -> 'html':
     return render(request, 'index.html',{"site_name":site_name, "vegetable_list":vegetable_list
                                          ,"meat_list":meat_list, "favor_list":favor_list})
 
+def result_transaction(request):
+    vegetable = request.POST['vege-select']
+    meat = request.POST['meat-select']
+    favor = request.POST['favor-select']
+    ingredients_list = [vegetable, meat, favor]
+
+    ai_output = get_ai_response(ingredients_list)
+    # print(ai_output)
+    dish = ai_output.split("\n", 1)
+    dish_name = dish[0]
+    table_start_index = dish[1].find('@')
+    html_table = dish[1][table_start_index + 4:-4]
+    dish_content = dish[1][:table_start_index]
+    current_dish.set_dish(dish_name, dish_content, html_table)
+
+    print("go to result page...")
+
+    return  redirect('/result/')
+
 def get_ai_response(ingredients) -> str:
     client = OpenAI(
         api_key = api_auth.get_api_auth()
@@ -56,7 +75,7 @@ def get_ai_response(ingredients) -> str:
         keyword = ',素食'
 
     ai_input = "提供一道用" + ingredients[0] + keyword + ingredients[1] + "烹飪的料理，味道要" \
-            + ingredients[2] +"料理名稱放在全文最前面" + "全文最後附上營養成分整理成html的表格語法，整段語法前後附上'@tbl'這個字串"
+            + ingredients[2] +"料理名稱放在全文最前面，名稱不要有重口味、清淡這些字眼，務必列出材料清單與做法步驟，全文最後附上營養成分整理成html的表格語法，整段語法前後附上'@tbl'這個字串"
 
     print(ai_input)
 
@@ -80,29 +99,16 @@ def get_sessionid(request):
     return False
 
 def result(request) -> 'html':
-    vegetable = request.POST['vege-select']
-    meat = request.POST['meat-select']
-    favor = request.POST['favor-select']
-    ingredients_list = [vegetable, meat, favor]
-
-    ai_output = get_ai_response(ingredients_list)
-    # print(ai_output)
-    dish = ai_output.split("\n", 1)
-    dish_name = dish[0]
-    table_start_index = dish[1].find('@')
-    html_table = dish[1][table_start_index+4:-4]
-    dish_content = dish[1][:table_start_index]
-    current_dish.set_dish(dish_name, dish_content, html_table)
-
-    # print(dish_content_substring)
 
     has_cookie = 'false'
 
     if get_sessionid(request):
         has_cookie = 'true'
 
-    return render(request,'result.html',{ "site_name":site_name, "dish_name":dish_name,
-                                         "dish_content":dish_content, "html_table":html_table, "has_cookie":has_cookie })
+    print(has_cookie)
+
+    return render(request,'result.html',{ "site_name":site_name, "dish_name":current_dish.name,
+                                         "dish_content":current_dish.content, "html_table":current_dish.html_table, "has_cookie":has_cookie })
 
 def add_bookmark(request):
     print("register here")
@@ -122,7 +128,6 @@ def add_bookmark(request):
                                     html_table = current_dish.get_dish()['html_table'], session = current_session)
 
     current_bookmark.save()
-    #return HttpResponse("已加入收藏!")
     return redirect('/bookmark/')
 
 def show_bookmark(request):

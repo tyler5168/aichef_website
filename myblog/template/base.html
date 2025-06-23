@@ -6,12 +6,8 @@
     <title>{{site_name | default:"預設名稱"}}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
-    <script type="text/javascript">
-    {
-        {% block javascript %}
-        {% endblock %}
-    }
-    </script>
+    {% block script%}
+    {% endblock %}
 
 </head>
 <body>
@@ -28,12 +24,21 @@
 </header>
 
 <main class="main">
+
+<div class="side-menu">
+    {% load static %}
+    <ul class="menu">
+        <!-- <img class="star" src="{% static 'img/star.png' %}" alt="我的最愛"> -->
+        <li><a href="/bookmark/"><strong>我的收藏</strong></a></li>
+        <li>熱門菜色</li>
+    </ul>
+</div>
+
 <div class="content">
     {% block content %}
     {% endblock %}
 </div>
-    {% block bookmark %}
-    {% endblock %}
+
 </main>
 
 <footer class="footer">
