@@ -17,6 +17,13 @@ body {
     flex-direction: column;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+
 .no-dishes {
     font-size: 130%;
     color: blue;
@@ -41,7 +48,11 @@ body {
     margin: auto;
 }
 
-
+#bookmark_id {
+    padding-top: 20px;
+    padding-bottom: 60px;
+    margin: auto;
+}
 
 /*Section of PC size*/
 
@@ -51,7 +62,6 @@ body {
     display: flex;
     justify-content: flex-start;
     color: white;
-	/* border: 2px solid black; */
     background-color:#09713e;
     width: 70%;
     margin: auto;
@@ -119,14 +129,11 @@ body {
 
 .label {
     padding-top: 50px;
-    padding-right: 1%;
-    padding-left: 40%;
     font-size: 150%;
 }
 
 .options {
-    padding-left: 6%;
-    margin-left: 40%;
+    text-align: center;
 }
 
 .btn-submit {
@@ -137,7 +144,6 @@ body {
     width: 200px;
     height: 60px;
     margin-top: 5%;
-    margin-left: 42%;
     font-size: 150%;
 }
 
@@ -149,7 +155,6 @@ body {
     width: 200px;
     height: 60px;
     margin-top: 5%;
-    margin-left: 42%;
     font-size: 150%;
 }
 
@@ -161,8 +166,6 @@ body {
     width: 250px;
     height: 60px;
     margin-top: 2%;
-    margin-left: 38%;
-    margin-bottom: 5%;
     font-size: 100%;
 }
 
@@ -174,8 +177,6 @@ body {
     width: 250px;
     height: 60px;
     margin-top: 2%;
-    margin-left: 38%;
-    margin-bottom: 5%;
     font-size: 100%;
 }
 
@@ -192,18 +193,23 @@ body {
     width: 10%;
 }
 
+#ai-prog {
+  width: 70%;
+  margin: auto;
+  background-color: #ddd;
+}
+
 }
 
 /*endof PC size*/
 
 
-/*Section of mobile size*/
+/*Section of mobile device size*/
 @media (max-width: 768px) {
 .flex-header  {
     display: flex;
     justify-content: flex-start;
     color: white;
-	/* border: 2px solid black; */
     background-color:#09713e;
     width: 90%;
     margin: auto;
@@ -252,8 +258,6 @@ body {
     display: flex;
     flex-direction: row;
     li{
-        /* border-bottom: solid 1px #023020; */
-        /* border: solid 1px #023020; */
         width: 200px;
         list-style-type: none;
         text-align: center;
@@ -277,25 +281,12 @@ body {
     width: 55%;
 }
 
-.star {
-    width: 10%;
-    padding-top: 10%;
-    padding-left: 15%;
-}
-
-.bookmark-url{
-    font-size: 150%;
-}
-
 .label {
     padding-top: 50px;
-    padding-right: 1%;
-    padding-left: 20%;
     font-size: 150%;
 }
 .options {
-    padding-left: 3%;
-    margin-left: 10%;
+    text-align: center;
 }
 
 .btn-submit {
@@ -306,7 +297,6 @@ body {
     width: 200px;
     height: 60px;
     margin-top: 5%;
-    margin-left: 20%;
     font-size: 150%;
 }
 
@@ -318,7 +308,6 @@ body {
     width: 200px;
     height: 60px;
     margin-top: 5%;
-    margin-left: 20%;
     font-size: 150%;
 }
 
@@ -329,8 +318,6 @@ body {
     border-radius:10px;
     width: 250px;
     height: 60px;
-    margin-top: 5%;
-    margin-left: 8%;
     font-size: 100%;
 }
 
@@ -341,8 +328,6 @@ body {
     border-radius:10px;
     width: 250px;
     height: 60px;
-    margin-top: 5%;
-    margin-left: 8%;
     font-size: 100%;
 }
 
@@ -358,8 +343,21 @@ body {
     width: 30%;
 }
 
+#ai-prog {
+  width: 90%;
+  margin: auto;
+  background-color: #ddd;
+}
+
 }
 
 /*End of mobile size*/
 
 
+/*progress bar*/
+#ai-prog-bar {
+  width: 1%;
+  height: 30px;
+  background-color: #32CD32;
+}
+/*End of progress bar*/

@@ -42,7 +42,50 @@
                 alert('菜類跟肉類至少挑一項!');
             else
             {
-                document.ingredients.btn_submit.value = '出菜中...';
+                document.ingredients.btn_submit.value = '出菜中.';
                 document.getElementById("ingredients").submit();
+                ai_prog = document.getElementById("ai-prog");
+                ai_prog.hidden = false;
+                move();
             }
         }
+
+
+        let i = 0;
+        function move() {
+        if (i == 0) {
+        i = 1;
+          let elem = document.getElementById("ai-prog-bar");
+          let width = 1;
+          let interval = 0;
+          let round = 0;
+          let id = setInterval(frame, 10);
+          function frame() {
+            width++;
+            interval++;
+
+            if(((interval)%100) == 0) {
+              round = round%3;
+              round++;
+          }
+
+          switch(round)
+          {
+              case 1:
+              document.ingredients.btn_submit.value = '出菜中.';
+              break;
+              case 2:
+              document.ingredients.btn_submit.value = '出菜中..';
+              break;
+              case 3:
+              document.ingredients.btn_submit.value = '出菜中...';
+              break;
+          }
+
+          if(width > 100)
+              width = 0;
+
+            elem.style.width = width + "%";
+        }
+      }
+    }

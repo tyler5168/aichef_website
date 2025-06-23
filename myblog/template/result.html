@@ -28,8 +28,7 @@ function ConfirmCookie(has_cookie)
 <div class="content-intro">
     <div class="dish-name"><strong>{{dish_name}}</strong></div>
     <pre style="white-space: pre-wrap;" >{{dish_content}}</pre>
-    <div>{{html_table|safe}}</div>
-    <!-- <div>如果喜歡這道菜，請<a href="/add_bookmark/" onclick="return ConfirmCookie({{has_cookie}});">按此</a>加入收藏</div> -->
-    <p><input class="btn-delete-bookmark"  name="btn-delete-bookmark" value="將這道菜加入收藏" type='button' onclick="return ConfirmCookie({{has_cookie}});"></p>
+    <div class="dish-table">{{html_table|safe}}</div>
+    <div id="bookmark_id"><input class="btn-delete-bookmark"  name="btn-delete-bookmark" value="將這道菜加入收藏" type='button' onclick="return ConfirmCookie({{has_cookie}});"></div>
 </div>
 {% endblock %}

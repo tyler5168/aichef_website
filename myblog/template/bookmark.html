@@ -32,7 +32,7 @@ function styleInit(){
     <div class="dish-name">{{dish.title}}</div>
     <pre style="white-space: pre-wrap;" >{{dish.content}}</pre>
     <div class="dish-table">{{dish.html_table|safe}}</div>
-    <p><input class="btn-delete-bookmark" name="btn-delete-bookmark" value="將這道菜從收藏移除" type='button' onclick="location.href='/delete_bookmark/{{dish.id}}';"></p>
+    <div id="bookmark_id"><input class="btn-delete-bookmark" name="btn-delete-bookmark" value="將這道菜從收藏移除" type='button' onclick="location.href='/delete_bookmark/{{dish.id}}';"></div>
     {% endfor %}
 
     {% else %}

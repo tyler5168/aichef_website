@@ -23,7 +23,6 @@
             {%endfor%}
         </select>
         <script type="text/javascript">
-            // listStyleChange("vege")
         </script>
    </div>
 
@@ -37,7 +36,6 @@
             {%endfor%}
         </select>
         <script type="text/javascript">
-            // listStyleChange("meat")
         </script>     
    </div>
 
@@ -51,10 +49,17 @@
             {%endfor%}
         </select>
         <script type="text/javascript">
-            // listStyleChange("favor")
         </script>  
    </div>
    <p><input class="btn-submit" name="btn_submit" id="btn-submit" value='上菜!' type='button'></p>
 </form>
+
+{% endblock %}
+
+{% block progbar%}
+
+<div id="ai-prog" hidden>
+  <div id="ai-prog-bar"></div>
+</div>
 
 {% endblock %}
