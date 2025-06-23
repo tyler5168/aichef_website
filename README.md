@@ -7,7 +7,7 @@
 SQLite3這個輕量級的資料庫，日後將驗證mysql是否一樣可以使用<br>
 <h3>以下是手機上會看到的行動版網頁截圖</h3>
 <br>
-![外觀圖](https://github.com/tyler5168/aichef_website/blob/main/ai_chef_mobile_dev.png)
+![image](https://github.com/tyler5168/aichef_website/blob/main/ai_chef_mobile_dev.png)
 
 熱門菜色功能待數據量較龐大後再上線
 
