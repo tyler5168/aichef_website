@@ -18,7 +18,7 @@
         }
 
         function listStyleInit() {
-            let options = document.getElementsByClassName('options')
+            let options = document.getElementsByClassName('options');
 
                 console.log(options.length);
 

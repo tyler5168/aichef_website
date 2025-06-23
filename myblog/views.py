@@ -1,7 +1,4 @@
 # Create your views here.
-from tkinter.font import names
-
-from Demos.win32ts_logoff_disconnected import session
 from django.contrib.sessions.models import Session
 from django.shortcuts import render, HttpResponse, redirect
 from openai import OpenAI
@@ -35,7 +32,7 @@ def index(request) -> 'html':
     vegetable_list = ('高麗菜','菠菜','胡蘿蔔','番茄','絲瓜','玉米','苦瓜',
                       '竹筍','馬鈴薯','小白菜','香菇','洋蔥','不吃菜')
     meat_list = ('豬', '雞', '牛', '魚', '羊','不吃肉')
-    favor_list = ('重口味', '重口味又辣', '清淡', '煮湯')
+    favor_list = ('重口味', '重口味且辣', '清淡', '煮湯')
 
     return render(request, 'index.html',{"site_name":site_name, "vegetable_list":vegetable_list
                                          ,"meat_list":meat_list, "favor_list":favor_list})
