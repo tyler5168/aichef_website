@@ -25,10 +25,16 @@ function ConfirmCookie(has_cookie)
 {% endblock %}
 
 {% block content %}
+{%if dish_name == "" %}
+<div class="content-intro">
+ <div class="dish-name"><strong>OPEN AI處理時間異常!請返回首頁稍後在訪問!</strong></div>
+</div>
+{% else %}
 <div class="content-intro">
     <div class="dish-name"><strong>{{dish_name}}</strong></div>
     <pre style="white-space: pre-wrap;" >{{dish_content}}</pre>
     <div class="dish-table">{{html_table|safe}}</div>
     <div id="bookmark_id"><input class="btn-delete-bookmark"  name="btn-delete-bookmark" value="將這道菜加入收藏" type='button' onclick="return ConfirmCookie({{has_cookie}});"></div>
 </div>
+{% endif %}
 {% endblock %}

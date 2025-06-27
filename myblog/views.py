@@ -1,7 +1,7 @@
 # Create your views here.
 from django.contrib.sessions.models import Session
 from django.shortcuts import render, HttpResponse, redirect
-from openai import OpenAI
+from openai import OpenAI, APITimeoutError
 from myblog.models import UserBookmark
 from . import api_auth
 import html
@@ -45,6 +45,11 @@ def result_transaction(request):
 
     ai_output = get_ai_response(ingredients_list)
     # print(ai_output)
+    if ai_output == "":
+        print("go to result page with null ai response...")
+        current_dish.set_dish("", "", "")
+        return redirect('/result/')
+
     dish = ai_output.split("\n", 1)
     dish_name = dish[0]
     table_start_index = dish[1].find('@')
@@ -79,10 +84,14 @@ def get_ai_response(ingredients) -> str:
     debug = False
 
     if not debug:
-        response = client.responses.create(
-            model="gpt-4.1-mini",
-            input=ai_input
-        )
+        try:
+            response = client.responses.create(
+                model="gpt-4.1-mini",
+                input=ai_input,
+                timeout=5,
+            )
+        except APITimeoutError as err:
+            return ""
 
         return response.output_text
 
