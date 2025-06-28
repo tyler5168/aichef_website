@@ -88,7 +88,7 @@ def get_ai_response(ingredients) -> str:
             response = client.responses.create(
                 model="gpt-4.1-mini",
                 input=ai_input,
-                timeout=5,
+                timeout=10,
             )
         except APITimeoutError as err:
             return ""
